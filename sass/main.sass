@@ -384,7 +384,7 @@ h2
 				opacity: 1
 				transition: all .4s
 			svg
-				fill: url(#SVGID_1_)
+				fill: url(#instagram-gradient)
 				transition: all .4s
 			&:hover
 				color: vars.$white
@@ -419,6 +419,35 @@ h2
 			&:hover
 				// background-color: $telegram
 				background: linear-gradient(#2AABEE 0,#229ED9 100%)
+				&:before
+					opacity: 0
+				svg
+					fill: vars.$white
+		&--max
+			border: none
+			background: radial-gradient(121% 50% at -2.4% -43.9%, #0000FF 0%, rgba(0, 0, 255, 0) 100%), linear-gradient(74deg, #44CCFF 0%, #5533EE 66.2%, #9933DD 100%)
+			color: #5533EE
+			position: relative
+			z-index: 1
+			&:before
+				content: ''
+				display: block
+				position: absolute
+				top: 2px
+				right: 2px
+				bottom: 2px
+				left: 2px
+				background-color: vars.$white
+				z-index: -1
+				border-radius: inherit
+				opacity: 1
+				transition: all .4s
+			svg
+				fill: url(#max-linear-gradient)
+				transition: all .4s
+			&:hover
+				color: vars.$white
+				background: radial-gradient(121% 50% at -2.4% -43.9%, #0000FF 0%, rgba(0, 0, 255, 0) 100%), linear-gradient(74deg, #44CCFF 0%, #5533EE 66.2%, #9933DD 100%)
 				&:before
 					opacity: 0
 				svg
