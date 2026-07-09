@@ -1,0 +1,56 @@
+.rate-employee {
+
+    &__title {
+        text-align: center;
+        margin-bottom: 0.75rem;
+    }
+
+    &__subtitle {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    &__block-title {
+        font-size: 1.15rem;
+        margin: 2rem 0 0.75rem;
+        text-align: left;
+    }
+
+    &__question {
+        text-align: left;
+        margin-bottom: 1rem;
+    }
+
+    &__stars {
+        margin: 1.25rem 0 0.5rem;
+
+        .star {
+            width: 52px;
+            height: 52px;
+
+            &::before {
+                font-size: 32px;
+            }
+
+            &.active::before {
+                font-size: 36px;
+            }
+        }
+    }
+
+    @media (max-width: 576px) {
+        &__stars .star {
+            width: 44px;
+            height: 44px;
+            border-width: 2px;
+
+            &::before {
+                font-size: 26px;
+            }
+
+            &.active::before {
+                font-size: 28px;
+            }
+        }
+    }
+}

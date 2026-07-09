@@ -805,6 +805,28 @@ document.addEventListener('DOMContentLoaded', () => {
 				formData.append('rate', rate);
 			}
 
+			if(form.closest('#rate-employee')) {
+				if(rate == 0) {
+					const rateError = document.getElementById('rate-error');
+					if(rateError) rateError.textContent = 'Пожалуйста, поставьте оценку';
+					btn.innerHTML = '<span>Отправить</span>';
+					btn.removeAttribute('disabled');
+					return;
+				}
+				const dtField = form.querySelector('#service-datetime');
+				if(dtField && dtField.value) {
+					formData.set(dtField.name, dtField.value.replace('T', ' '));
+				}
+				const isGoodRate = rate >= 4;
+				sendForm(form, btn, formData, 'Спасибо! Ваша оценка отправлена.')
+				.then(res => {
+					if(res && isGoodRate && reviewBlockGood) {
+						reviewBlockGood.classList.add('active');
+					}
+				});
+				return;
+			}
+
 			if(dataset.file){
 				formData.append('file', dataset.file);
 				sendForm(form, btn, formData, "Спасибо за&nbsp;Ваш отзыв.");
@@ -909,6 +931,26 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		};
 	})
+
+	const rateStars = document.getElementById('rate-stars');
+	if(rateStars) {
+		const stars = rateStars.querySelectorAll('.star');
+		rateStars.addEventListener('click', e => {
+			const star = e.target.closest('.star');
+			if(!star) return;
+			rate = +star.dataset.value;
+			stars.forEach(s => s.classList.toggle('active', +s.dataset.value <= rate));
+			const rateError = document.getElementById('rate-error');
+			if(rateError) rateError.textContent = '';
+		});
+
+		const serviceDt = document.getElementById('service-datetime');
+		if(serviceDt && !serviceDt.value) {
+			const now = new Date();
+			now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+			serviceDt.value = now.toISOString().slice(0, 16);
+		}
+	}
 
 	if(qtyBlock) {
 		qtyBlock.addEventListener('click', e => {
